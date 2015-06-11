@@ -9,7 +9,7 @@ define(['./base_parser'], function (BaseParser)
 	WikiPage.get = function (url, slug, delegate, parser)
 	{
 		var titlesToDelegates = {};
-		titlesToDelegates[slug] = delegate;
+		titlesToDelegates[slug] = [ delegate ];
 		WikiPage.all(url, titlesToDelegates, parser);
 	};
 
@@ -53,10 +53,13 @@ define(['./base_parser'], function (BaseParser)
 							wiki_page.parse(response.query.pages[p]);
 
 							// ping the delegate callback
-							var delegate = titlesToDelegates[wiki_page.title];
-							if (delegate && typeof(delegate['success']) == 'function')
+							for (var d in titlesToDelegates[wiki_page.title])
 							{
-								delegate['success'](wiki_page);
+								var delegate = titlesToDelegates[wiki_page.title][d];
+								if (typeof(delegate['success']) == 'function')
+								{
+									delegate['success'](wiki_page);
+								}
 							}
 						}
 					}
@@ -66,9 +69,12 @@ define(['./base_parser'], function (BaseParser)
 				{
 					console.log('WikiPage request error: ' + query);
 					// ping the delegate callback
-					if (delegate && typeof(delegate['error']) == 'function')
+					for (var delegate in titlesToDelegates[wiki_page.title])
 					{
-						delegate['error'](xhr, status, error);
+						if (typeof(delegate['error']) == 'function')
+						{
+							delegate['error'](xhr, status, error);
+						}
 					}
 				}
 		});

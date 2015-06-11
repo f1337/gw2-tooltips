@@ -30,10 +30,12 @@ define(
 					// create the renderer instance for this element
 					var elem_renderer = new renderer($(this), style);
 					// add the renderer delegates for this element to the map
-					titlesToDelegates[unescape(slug).replace(/_/g, ' ')] = {
+					var key = unescape(slug).replace(/_/g, ' ');
+					if (! titlesToDelegates[key]) titlesToDelegates[key] = [];
+					titlesToDelegates[key].push({
 						error: function (xhr, status, error) { elem_renderer['error'](xhr, status, error) },
-						success: function (page) { elem_renderer['success'] (page) }
-					};
+						success: function (page) { elem_renderer['success'](page) }
+					});
 				});
 
 				WikiPage.all('http://wiki.guildwars2.com/api.php', titlesToDelegates, InfoboxParser);
