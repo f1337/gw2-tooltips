@@ -54,15 +54,9 @@ The `data-wikitip-style` attribute accepts any [qTip<sup>2</sup> styles](http://
 
 ## Development
 
-In order to hack/fiddle/contribute, you probably want to use `requirejs` for instant gratification/feedback:
+In order to hack/fiddle/contribute, you'll probably want to use `requirejs` for instant gratification/feedback:
 
-```
-<script data-main="app" src="requirejs.js"></script>
-```
-
-## Building
-
-And when you're ready to test the static build, you'll probably want to install r.js and almond (unless you already have them installed):
+### Installing requirejs
 
 ```
 $ npm install
@@ -70,8 +64,16 @@ almond@0.3.1 node_modules/almond
 requirejs@2.1.18 node_modules/requirejs
 ```
 
-Then build like this:
+### Using requirejs
 
 ```
+<script data-main="app" src="requirejs.js"></script>
+```
 
+### Building
+
+If you didn't already `npm install`, go ahead and do so, then create the static single-file build like so:
+
+```
+node ./node_modules/requirejs/bin/r.js -o build.js
 ```
