@@ -1,6 +1,6 @@
 # GW2-Wikitips
 
-Drop-in GW2 tooltips for your site.
+Drop-in GW2 tooltips for your site. Feedback and pull-requests welcome.
 
 ```
 <html>
