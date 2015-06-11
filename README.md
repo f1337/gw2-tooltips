@@ -62,8 +62,6 @@ In order to hack/fiddle/contribute, you'll probably want to use `requirejs` for 
 
 ```shell
 npm install
- almond@0.3.1 node_modules/almond
- requirejs@2.1.18 node_modules/requirejs
 ```
 
 ### Using requirejs
