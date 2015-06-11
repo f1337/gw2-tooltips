@@ -16,7 +16,7 @@ To use GW2 Wikitips on your Enjin site, go to Admin > Settings > Code Injection.
 
 Save the changes, and now links to the GW2 wiki should present tooltips on hover:
 
-```MediaWiki
+```
 [url=http://wiki.guildwars2.com/wiki/Absolute_Resolution]Absolute Resolution[/url]
 ```
 
