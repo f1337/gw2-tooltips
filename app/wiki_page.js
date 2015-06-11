@@ -6,64 +6,19 @@ define(['./base_parser'], function (BaseParser)
 		if (parser) this.parsers.unshift(parser);
 	}
 
-	WikiPage.prototype.get = function (url, slug, delegate)
+	WikiPage.get = function (url, slug, delegate, parser)
 	{
-		var self = this;
-		slug = unescape(slug);
-		var query = (slug.endsWith('!"') ? slug.replace(/_/g, ' ') : slug);
-
-		// return;
-		$.ajax({
-				url: url,
-				cache: true,
-				dataType: "jsonp",
-				// jsonp: 'callback',
-				// jsonpCallback: 'jsonCallback',
-
-				data: {
-					format: 'json',
-					action: 'query',
-					titles: query,
-					prop: 'revisions',
-					rvprop: 'content'
-				},
-
-				success: function(response)
-				{
-					// parse the response
-					var page_ids = Object.keys(response.query.pages);
-					if (page_ids.length != 1 || page_ids[0] == '-1')
-					{
-						this.warn(response.query, 'Expected response.query.pages to return exactly 1 page id.');
-						return;
-					}
-					self.parse(response.query.pages[page_ids[0]]);
-
-					// ping the delegate callback
-					if (delegate && typeof(delegate['success']) == 'function')
-					{
-						delegate['success'](self);
-					}
-				},
-
-				error: function(xhr, status, error)
-				{
-					console.log('WikiPage request error: ' + query);
-					// ping the delegate callback
-					if (delegate && typeof(delegate['error']) == 'function')
-					{
-						delegate['error'](xhr, status, error);
-					}
-				}
-		});
+		var titlesToDelegates = {};
+		titlesToDelegates[slug] = delegate;
+		WikiPage.all(url, titlesToDelegates, parser);
 	};
 
-	WikiPage.all = function (url, titles, delegate)
+	WikiPage.all = function (url, titlesToDelegates, parser)
 	{
 		var queries = [];
-		for (var t in titles)
+		for (var title in titlesToDelegates)
 		{
-			queries.push(unescape(titles[t]).replace(/_/g, ' '));
+			queries.push(title);
 		}
 
 		// return;
@@ -87,12 +42,18 @@ define(['./base_parser'], function (BaseParser)
 					// parse the response
 					for (var p in response.query.pages)
 					{
-						if (p != '-1')
+						if (p == '-1')
 						{
-							var wiki_page = new WikiPage(InfoboxParser);
+							console.warn('Unexpected page id "-1" found.');
+							console.warn(response.query);
+						}
+						else
+						{
+							var wiki_page = new WikiPage(parser);
 							wiki_page.parse(response.query.pages[p]);
 
 							// ping the delegate callback
+							var delegate = titlesToDelegates[wiki_page.title];
 							if (delegate && typeof(delegate['success']) == 'function')
 							{
 								delegate['success'](wiki_page);

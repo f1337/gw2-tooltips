@@ -11,18 +11,9 @@ define(
 
 			this.all = function (style)
 			{
-				$("a[href *= '" + this.href_pattern + "']").each(function() {
-					var url = $(this).attr('href');
-					var slug = url.slice(url.indexOf(self.href_pattern) + self.href_pattern.length);
-					self.create($(this), slug, style);
-				});
-			};
-
-			this.create = function (elem, slug, style)
-			{
 				// determine what renderer & tooltip style to use
 				var renderer = BaseRenderer;
-				// explicit calls to .all/.create override data-style attribute
+				// explicitly passed style overrides data-style attribute
 				style = style || this.style();
 				// if the style is qtip, use the qtip renderer
 				if (style && style.beginsWith('qtip'))
@@ -30,8 +21,22 @@ define(
 					renderer = QTip2Renderer;
 				}
 
-				var wikiPage = new WikiPage(InfoboxParser);
-				wikiPage.get('http://wiki.guildwars2.com/api.php', slug, new renderer(elem, style));
+				// map page titles to renderer delegates
+				var titlesToDelegates = {};
+				$("a[href *= '" + this.href_pattern + "']").each(function() {
+					// parse the page title slug from the href
+					var url = $(this).attr('href');
+					var slug = url.slice(url.indexOf(self.href_pattern) + self.href_pattern.length);
+					// create the renderer instance for this element
+					var elem_renderer = new renderer($(this), style);
+					// add the renderer delegates for this element to the map
+					titlesToDelegates[unescape(slug).replace(/_/g, ' ')] = {
+						error: function (xhr, status, error) { elem_renderer['error'](xhr, status, error) },
+						success: function (page) { elem_renderer['success'] (page) }
+					};
+				});
+
+				WikiPage.all('http://wiki.guildwars2.com/api.php', titlesToDelegates, InfoboxParser);
 			};
 
 			this.style = function ()
