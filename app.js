@@ -5,7 +5,7 @@
 requirejs.config({
 	// cache-buster for development:
 	// urlArgs: "cache-buster=" + Math.random(),
-	baseUrl: "/js/lib",
+	baseUrl: "/lib",
 	paths: {
 		app: "../app",
 		jquery: "//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min",
