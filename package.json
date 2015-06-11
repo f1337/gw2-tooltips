@@ -1,0 +1,19 @@
+{
+	"author": "Michael R. Fleet (github.com/f1337)",
+	"name": "gw2-wikitips",
+	"version": "1.0.0",
+	"description": "https://github.com/f1337/gw2-wikitips",
+	"main": "index.js",
+	"dependencies": {},
+	"devDependencies": {
+		"almond": "^0.3.1",
+		"requirejs": "^2.1.18"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@bitbucket.org:f1337/borg.boom-squad.com.git"
+	}
+}
