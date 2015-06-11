@@ -1,9 +1,9 @@
 define(['./base_parser', './skill_fact', './bonus'], function (BaseParser, SkillFact, Bonus)
 {
-	function InfoboxParser (response, delegate)
+	function InfoboxParser (page, delegate)
 	{
 		this.description_re = /\|\s*description\s*=\s*([^\n]+)\n/;
-		this.page = this.page_from_response(response);
+		this.page = page;
 	}
 
 	InfoboxParser.prototype = Object.create( BaseParser.prototype );

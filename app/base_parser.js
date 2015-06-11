@@ -1,8 +1,8 @@
 define(function ()
 {
-	function BaseParser (response, delegate)
+	function BaseParser (page, delegate)
 	{
-		this.page = this.page_from_response(response);
+		this.page = page;
 		this.description_re = new RegExp("(A*\\s*[\\[\\{']+" + this.title() + "[\\]\\}']+[^\\n]+)\\n", 'i');
 	}
 
@@ -25,18 +25,18 @@ define(function ()
 		return ( (description && description[1]) ? this.strip(description[1]) : null);
 	};
 
-	// parse the page node from the response
-	BaseParser.prototype.page_from_response = function (response)
-	{
-		var page_ids = Object.keys(response.query.pages);
-		if (page_ids.length != 1 || page_ids[0] == '-1')
-		{
-			this.warn(response.query, 'Expected response.query.pages to return exactly 1 page id.');
-			return;
-		}
-		return response.query.pages[page_ids[0]];
-	};
-
+	// // parse the page node from the response
+	// BaseParser.prototype.page_from_response = function (response)
+	// {
+	// 	var page_ids = Object.keys(response.query.pages);
+	// 	if (page_ids.length != 1 || page_ids[0] == '-1')
+	// 	{
+	// 		this.warn(response.query, 'Expected response.query.pages to return exactly 1 page id.');
+	// 		return;
+	// 	}
+	// 	return response.query.pages[page_ids[0]];
+	// };
+	//
 	// parse the revision node from the response
 	BaseParser.prototype.revision = function ()
 	{
