@@ -60,7 +60,7 @@ In order to hack/fiddle/contribute, you'll probably want to use `requirejs` for 
 
 ### Installing requirejs
 
-```
+```shell
 $ npm install
 almond@0.3.1 node_modules/almond
 requirejs@2.1.18 node_modules/requirejs
@@ -68,7 +68,7 @@ requirejs@2.1.18 node_modules/requirejs
 
 ### Using requirejs
 
-```
+```HTML
 <script data-main="app" src="requirejs.js"></script>
 ```
 
@@ -76,6 +76,6 @@ requirejs@2.1.18 node_modules/requirejs
 
 If you didn't already `npm install`, go ahead and do so, then create the static single-file build like so:
 
-```
+```shell
 node ./node_modules/requirejs/bin/r.js -o build.js
 ```
