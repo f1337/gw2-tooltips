@@ -10,7 +10,5 @@
 		app: "../app",
 		jquery: "jquery-shim",
 		qtip2: "qtip2-shim"
-	},
-
-	// node r.js -o build.js
+	}
 })
