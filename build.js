@@ -6,12 +6,11 @@
 
 	baseUrl: "lib",
 	paths: {
-		// requireLib: 'require',
+		almond: "../node_modules/almond/almond",
 		app: "../app",
 		jquery: "jquery-shim",
 		qtip2: "qtip2-shim"
 	},
 
-	// include: ["requireLib"]
-	// node r.js -o baseUrl=. name=path/to/almond include=main out=main-built.js wrap=true
+	// node r.js -o build.js
 })

@@ -2,7 +2,7 @@
 
 Drop-in GW2 tooltips for your site. Feedback and pull-requests welcome.
 
-## Installation
+## Getting Started
 
 ### Enjin Guild site
 
@@ -17,7 +17,6 @@ To use GW2 Wikitips on your Enjin site, go to Admin > Settings > Code Injection.
 ### Static HTML Page
 
 Download the [latest gw2-wikitips](https://raw.githubusercontent.com/f1337/gw2-wikitips/master/gw2-wikitips.js), and put it with your other JavaScript files.
-
 
 ```HTML
 <html>
@@ -43,4 +42,36 @@ Download the [latest gw2-wikitips](https://raw.githubusercontent.com/f1337/gw2-w
 </body>
 
 </html>
+```
+
+## Style
+
+The `data-wikitip-style` attribute accepts any [qTip<sup>2</sup> styles](http://qtip2.com/options#style), space-separated:
+
+```HTML
+<script data-wikitip-style="qtip-blue qtip-shadow qtip-rounded" src="gw2-wikitips.js"></script>
+```
+
+## Development
+
+In order to hack/fiddle/contribute, you probably want to use `requirejs` for instant gratification/feedback:
+
+```
+<script data-main="app" src="requirejs.js"></script>
+```
+
+## Building
+
+And when you're ready to test the static build, you'll probably want to install r.js and almond (unless you already have them installed):
+
+```
+$ npm install
+almond@0.3.1 node_modules/almond
+requirejs@2.1.18 node_modules/requirejs
+```
+
+Then build like this:
+
+```
+
 ```
