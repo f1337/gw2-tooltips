@@ -14,6 +14,12 @@ To use GW2 Wikitips on your Enjin site, go to Admin > Settings > Code Injection.
 <script data-wikitip-style="qtip-bootstrap" src="http://f1337.github.io/gw2-wikitips/gw2-wikitips.js"></script>
 ```
 
+Save the changes, and now links to the GW2 wiki should present tooltips on hover:
+
+```
+[url=http://wiki.guildwars2.com/wiki/Absolute_Resolution]Absolute Resolution[/url]
+```
+
 ### Static HTML Page
 
 Download the [latest gw2-wikitips](https://raw.githubusercontent.com/f1337/gw2-wikitips/master/gw2-wikitips.js), and put it with your other JavaScript files.
@@ -29,19 +35,15 @@ Download the [latest gw2-wikitips](https://raw.githubusercontent.com/f1337/gw2-w
 	<!-- finally, gw2-wikitips -->
 	<script data-wikitip-style="qtip-bootstrap" src="/path/to/gw2-wikitips.js"></script>
 </head>
+```
 
-<body>
+Then add some links to the GW2 wiki:
 
-<ul>
-	<li><a href="https://wiki.guildwars2.com/wiki/Strength_in_Numbers">Strength in Numbers</a></li>
-	<li><a href="https://wiki.guildwars2.com/wiki/Virtue_of_Justice">Virtue of Justice</a></li>
-	<li><a href="https://wiki.guildwars2.com/wiki/Empower">Empower</a></li>
-	<li><a href="https://wiki.guildwars2.com/wiki/Superior_Rune_of_the_Trooper">Superior Rune of the Trooper</a></li>
-</ul>
-
-</body>
-
-</html>
+```
+<a href="https://wiki.guildwars2.com/wiki/Strength_in_Numbers">Strength in Numbers</a>
+<a href="https://wiki.guildwars2.com/wiki/Virtue_of_Justice">Virtue of Justice</a>
+<a href="https://wiki.guildwars2.com/wiki/Empower">Empower</a>
+<a href="https://wiki.guildwars2.com/wiki/Superior_Rune_of_the_Trooper">Superior Rune of the Trooper</a>
 ```
 
 ## Style
